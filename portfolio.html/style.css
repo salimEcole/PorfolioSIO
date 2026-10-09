@@ -1,0 +1,87 @@
+:root{
+  --bg:#07111f; --panel:#0d1b2e; --panel2:#12263f; --line:#1f3d5f;
+  --text:#d6e4f5; --muted:#8aa3bf; --cyan:#3fd0ff; --amber:#ffb020; --green:#4ade80;
+  --display:"Chakra Petch",system-ui,sans-serif;
+  --body:"IBM Plex Sans",system-ui,sans-serif;
+  --mono:"JetBrains Mono",ui-monospace,Consolas,monospace;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;color:var(--text);font-family:var(--body);line-height:1.65;background-color:var(--bg);
+  background-image:linear-gradient(rgba(63,208,255,.06) 1px,transparent 1px),linear-gradient(90deg,rgba(63,208,255,.06) 1px,transparent 1px);
+  background-size:36px 36px;min-height:100vh}
+a{color:var(--cyan)}
+:focus-visible{outline:2px solid var(--amber);outline-offset:3px}
+.wrap{max-width:1000px;margin:0 auto;padding:clamp(16px,4vw,48px)}
+
+
+/* fenêtre terminal */
+.term{background:var(--panel);border:1px solid var(--line);border-radius:8px;box-shadow:0 0 0 1px rgba(63,208,255,.05),0 20px 50px rgba(0,0,0,.45);overflow:hidden}
+.bar{display:flex;align-items:center;gap:8px;padding:9px 14px;background:var(--panel2);border-bottom:1px solid var(--line);font:400 .8rem var(--mono);color:var(--muted)}
+.bar i{width:10px;height:10px;border-radius:50%;background:var(--line)}
+.bar i:nth-child(1){background:#ff5f57}.bar i:nth-child(2){background:#febc2e}.bar i:nth-child(3){background:#28c840}
+.bar span{margin-left:8px}
+.body{padding:clamp(18px,4vw,36px)}
+.prompt{font:400 .95rem var(--mono);color:var(--green);margin:0 0 6px}
+.prompt b{color:var(--cyan);font-weight:400}
+.out{font:400 .95rem var(--mono);color:var(--muted);margin:0 0 18px}
+h1{font-family:var(--display);font-weight:700;font-size:clamp(2.2rem,7vw,4.2rem);line-height:1.05;margin:0 0 18px;letter-spacing:.01em;color:#fff}
+.cursor{display:inline-block;width:.55em;height:1em;background:var(--cyan);vertical-align:-.12em;margin-left:6px;animation:blink 1.1s steps(1) infinite}
+@keyframes blink{50%{opacity:0}}
+
+/* cartes = équipements réseau */
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:18px;margin-top:26px}
+.dev{display:block;text-decoration:none;color:var(--text);background:var(--panel);border:1px solid var(--line);border-radius:6px;position:relative;transition:border-color .15s,box-shadow .15s}
+.dev:hover,.dev:focus-visible{border-color:var(--cyan);box-shadow:0 0 0 1px var(--cyan),0 0 24px rgba(63,208,255,.2)}
+.dev header{display:flex;justify-content:space-between;align-items:center;padding:8px 14px;background:var(--panel2);border-bottom:1px solid var(--line);font:400 .78rem var(--mono);color:var(--muted)}
+.led{display:inline-flex;align-items:center;gap:6px}
+.led::before{content:"";width:8px;height:8px;border-radius:50%;background:var(--green);box-shadow:0 0 8px var(--green)}
+.dev .in{padding:18px 16px 20px}
+.dev h2{font-family:var(--display);font-size:1.35rem;margin:0 0 6px;color:#fff}
+.dev p{margin:0 0 14px;color:var(--muted);font-size:.95rem}
+.dev code{font:400 .85rem var(--mono);color:var(--green)}
+.ports{position:absolute;right:14px;bottom:14px;display:flex;gap:4px}
+.ports s{width:10px;height:10px;border:1px solid var(--line);background:var(--bg)}
+
+/* pages */
+.back{display:inline-block;margin-bottom:18px;font:400 .95rem var(--mono);text-decoration:none;color:var(--green)}
+.back:hover{color:var(--cyan)}
+.page h2{font-family:var(--display);font-size:1.45rem;margin:38px 0 14px;color:#fff}
+.page h2::before{content:"## ";color:var(--cyan);font-family:var(--mono);font-weight:400}
+.lead{font-size:1.1rem;color:var(--muted);max-width:62ch;margin:0 0 10px}
+.box{background:var(--bg);border:1px solid var(--line);border-left:3px solid var(--cyan);border-radius:4px;padding:16px 18px;margin:0 0 14px}
+.box h3{font-family:var(--display);font-size:1.1rem;margin:0 0 6px;color:#fff}
+.box p,.box ul{margin:6px 0 0}
+.box ul{padding-left:20px}
+.cols{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:14px}
+.cols .box{margin:0}
+.todo{background:rgba(255,176,32,.12);border:1px dashed var(--amber);border-radius:3px;padding:1px 6px;color:var(--amber)}
+.tag{display:inline-block;font:400 .82rem var(--mono);border:1px solid var(--cyan);color:var(--cyan);border-radius:3px;padding:1px 9px;margin:2px 6px 2px 0}
+
+/* frise = journal d'événements */
+.log{list-style:none;margin:0;padding:0;font-family:var(--body)}
+.log li{display:grid;grid-template-columns:120px 1fr;gap:18px;padding:16px 0;border-top:1px dashed var(--line)}
+.log li:last-child{border-bottom:1px dashed var(--line)}
+.log time{font:700 .95rem var(--mono);color:var(--cyan);padding-top:2px}
+.log h3{margin:0 0 4px;font-family:var(--display);font-size:1.1rem;color:#fff}
+.log p{margin:0;color:var(--muted)}
+.log li.key{background:rgba(255,176,32,.07);border-top:1px solid var(--amber);border-bottom:1px solid var(--amber);padding:16px 12px;margin:6px -12px}
+.log li.key time{color:var(--amber)}
+.flag{font:700 .72rem var(--mono);background:var(--amber);color:#1a1200;border-radius:3px;padding:1px 7px;margin-left:8px;vertical-align:2px}
+@media (max-width:560px){.log li{grid-template-columns:1fr;gap:4px}}
+
+/* schémas */
+.diag{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:14px}
+.diag figure{margin:0;background:var(--bg);border:1px solid var(--line);border-radius:4px;padding:10px}
+.diag figcaption{font:400 .85rem var(--mono);color:var(--muted);text-align:center;margin-top:4px}
+svg{width:100%;height:auto;display:block}
+svg text{font:11px var(--mono);fill:var(--muted)}
+.n{fill:var(--panel2);stroke:var(--line);stroke-width:1.5}
+.ok{stroke:var(--cyan);stroke-width:1.5;fill:none}
+.bad{stroke:#ff6b6b;stroke-width:1.5;fill:none;stroke-dasharray:4 3}
+.fw{fill:var(--amber)}
+
+iframe{width:100%;height:78vh;border:1px solid var(--line);border-radius:4px;background:#fff}
+.btn{display:inline-block;font:700 .9rem var(--mono);color:#04121f;background:var(--cyan);text-decoration:none;padding:9px 16px;border-radius:4px;margin:0 10px 16px 0}
+footer{margin-top:26px;text-align:center;font:400 .8rem var(--mono);color:var(--muted)}
+@media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important;scroll-behavior:auto!important}}

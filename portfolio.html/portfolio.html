@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Salim MOHCINI – Portfolio BTS SIO SISR</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@600;700&family=IBM+Plex+Sans:wght@400;600&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#07111f; --panel:#0d1b2e; --panel2:#12263f; --line:#1f3d5f;
+  --text:#d6e4f5; --muted:#8aa3bf; --cyan:#3fd0ff; --amber:#ffb020; --green:#4ade80;
+  --display:"Chakra Petch",system-ui,sans-serif;
+  --body:"IBM Plex Sans",system-ui,sans-serif;
+  --mono:"JetBrains Mono",ui-monospace,Consolas,monospace;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;color:var(--text);font-family:var(--body);line-height:1.65;background-color:var(--bg);
+  background-image:linear-gradient(rgba(63,208,255,.06) 1px,transparent 1px),linear-gradient(90deg,rgba(63,208,255,.06) 1px,transparent 1px);
+  background-size:36px 36px;min-height:100vh}
+a{color:var(--cyan)}
+:focus-visible{outline:2px solid var(--amber);outline-offset:3px}
+.wrap{max-width:1000px;margin:0 auto;padding:clamp(16px,4vw,48px)}
+
+/* routage par ancre */
+.page{display:none}
+.page:target{display:block}
+body:has(.page:target) #home{display:none}
+
+/* fenêtre terminal */
+.term{background:var(--panel);border:1px solid var(--line);border-radius:8px;box-shadow:0 0 0 1px rgba(63,208,255,.05),0 20px 50px rgba(0,0,0,.45);overflow:hidden}
+.bar{display:flex;align-items:center;gap:8px;padding:9px 14px;background:var(--panel2);border-bottom:1px solid var(--line);font:400 .8rem var(--mono);color:var(--muted)}
+.bar i{width:10px;height:10px;border-radius:50%;background:var(--line)}
+.bar i:nth-child(1){background:#ff5f57}.bar i:nth-child(2){background:#febc2e}.bar i:nth-child(3){background:#28c840}
+.bar span{margin-left:8px}
+.body{padding:clamp(18px,4vw,36px)}
+.prompt{font:400 .95rem var(--mono);color:var(--green);margin:0 0 6px}
+.prompt b{color:var(--cyan);font-weight:400}
+.out{font:400 .95rem var(--mono);color:var(--muted);margin:0 0 18px}
+h1{font-family:var(--display);font-weight:700;font-size:clamp(2.2rem,7vw,4.2rem);line-height:1.05;margin:0 0 18px;letter-spacing:.01em;color:#fff}
+.cursor{display:inline-block;width:.55em;height:1em;background:var(--cyan);vertical-align:-.12em;margin-left:6px;animation:blink 1.1s steps(1) infinite}
+@keyframes blink{50%{opacity:0}}
+
+/* cartes = équipements réseau */
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:18px;margin-top:26px}
+.dev{display:block;text-decoration:none;color:var(--text);background:var(--panel);border:1px solid var(--line);border-radius:6px;position:relative;transition:border-color .15s,box-shadow .15s}
+.dev:hover,.dev:focus-visible{border-color:var(--cyan);box-shadow:0 0 0 1px var(--cyan),0 0 24px rgba(63,208,255,.2)}
+.dev header{display:flex;justify-content:space-between;align-items:center;padding:8px 14px;background:var(--panel2);border-bottom:1px solid var(--line);font:400 .78rem var(--mono);color:var(--muted)}
+.led{display:inline-flex;align-items:center;gap:6px}
+.led::before{content:"";width:8px;height:8px;border-radius:50%;background:var(--green);box-shadow:0 0 8px var(--green)}
+.dev .in{padding:18px 16px 20px}
+.dev h2{font-family:var(--display);font-size:1.35rem;margin:0 0 6px;color:#fff}
+.dev p{margin:0 0 14px;color:var(--muted);font-size:.95rem}
+.dev code{font:400 .85rem var(--mono);color:var(--green)}
+.ports{position:absolute;right:14px;bottom:14px;display:flex;gap:4px}
+.ports s{width:10px;height:10px;border:1px solid var(--line);background:var(--bg)}
+
+/* pages */
+.back{display:inline-block;margin-bottom:18px;font:400 .95rem var(--mono);text-decoration:none;color:var(--green)}
+.back:hover{color:var(--cyan)}
+.page h2{font-family:var(--display);font-size:1.45rem;margin:38px 0 14px;color:#fff}
+.page h2::before{content:"## ";color:var(--cyan);font-family:var(--mono);font-weight:400}
+.lead{font-size:1.1rem;color:var(--muted);max-width:62ch;margin:0 0 10px}
+.box{background:var(--bg);border:1px solid var(--line);border-left:3px solid var(--cyan);border-radius:4px;padding:16px 18px;margin:0 0 14px}
+.box h3{font-family:var(--display);font-size:1.1rem;margin:0 0 6px;color:#fff}
+.box p,.box ul{margin:6px 0 0}
+.box ul{padding-left:20px}
+.cols{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:14px}
+.cols .box{margin:0}
+.todo{background:rgba(255,176,32,.12);border:1px dashed var(--amber);border-radius:3px;padding:1px 6px;color:var(--amber)}
+.tag{display:inline-block;font:400 .82rem var(--mono);border:1px solid var(--cyan);color:var(--cyan);border-radius:3px;padding:1px 9px;margin:2px 6px 2px 0}
+
+/* frise = journal d'événements */
+.log{list-style:none;margin:0;padding:0;font-family:var(--body)}
+.log li{display:grid;grid-template-columns:120px 1fr;gap:18px;padding:16px 0;border-top:1px dashed var(--line)}
+.log li:last-child{border-bottom:1px dashed var(--line)}
+.log time{font:700 .95rem var(--mono);color:var(--cyan);padding-top:2px}
+.log h3{margin:0 0 4px;font-family:var(--display);font-size:1.1rem;color:#fff}
+.log p{margin:0;color:var(--muted)}
+.log li.key{background:rgba(255,176,32,.07);border-top:1px solid var(--amber);border-bottom:1px solid var(--amber);padding:16px 12px;margin:6px -12px}
+.log li.key time{color:var(--amber)}
+.flag{font:700 .72rem var(--mono);background:var(--amber);color:#1a1200;border-radius:3px;padding:1px 7px;margin-left:8px;vertical-align:2px}
+@media (max-width:560px){.log li{grid-template-columns:1fr;gap:4px}}
+
+/* schémas */
+.diag{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:14px}
+.diag figure{margin:0;background:var(--bg);border:1px solid var(--line);border-radius:4px;padding:10px}
+.diag figcaption{font:400 .85rem var(--mono);color:var(--muted);text-align:center;margin-top:4px}
+svg{width:100%;height:auto;display:block}
+svg text{font:11px var(--mono);fill:var(--muted)}
+.n{fill:var(--panel2);stroke:var(--line);stroke-width:1.5}
+.ok{stroke:var(--cyan);stroke-width:1.5;fill:none}
+.bad{stroke:#ff6b6b;stroke-width:1.5;fill:none;stroke-dasharray:4 3}
+.fw{fill:var(--amber)}
+
+iframe{width:100%;height:78vh;border:1px solid var(--line);border-radius:4px;background:#fff}
+.btn{display:inline-block;font:700 .9rem var(--mono);color:#04121f;background:var(--cyan);text-decoration:none;padding:9px 16px;border-radius:4px;margin:0 10px 16px 0}
+footer{margin-top:26px;text-align:center;font:400 .8rem var(--mono);color:var(--muted)}
+@media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important;scroll-behavior:auto!important}}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<!-- ============ ACCUEIL ============ -->
+<main id="home">
+  <div class="term">
+    <div class="bar"><i></i><i></i><i></i><span>salim@sisr: ~</span></div>
+    <div class="body">
+      <p class="prompt">salim@sisr:~$ <b>whoami</b></p>
+      <h1>Salim MOHCINI<span class="cursor" aria-hidden="true"></span></h1>
+      <p class="prompt">salim@sisr:~$ <b>cat profil.txt</b></p>
+      <p class="out">Étudiant en 2e année de BTS SIO, option SISR<br>Réseaux, systèmes, sécurité, virtualisation</p>
+      <p class="prompt">salim@sisr:~$ <b>ls portfolio/</b></p>
+    </div>
+  </div>
+
+  <nav class="grid" aria-label="Sections du portfolio">
+    <a class="dev" href="#cv">
+      <header><span>eth0</span><span class="led">up</span></header>
+      <div class="in"><h2>Mon CV</h2><p>Formation, compétences, expériences.</p><code>$ cd cv/</code></div>
+    </a>
+    <a class="dev" href="#veille">
+      <header><span>eth1</span><span class="led">up</span></header>
+      <div class="in"><h2>Veille technologique</h2><p>Le Zero Trust : origine, sens, actualité.</p><code>$ cd veille/</code></div>
+    </a>
+    <a class="dev" href="#sisr">
+      <header><span>eth2</span><span class="led">up</span></header>
+      <div class="in"><h2>BTS SIO SISR</h2><p>La formation et mes projets réalisés.</p><code>$ cd sisr/</code></div>
+    </a>
+    <a class="dev" href="#stage">
+      <header><span>eth3</span><span class="led">up</span></header>
+      <div class="in"><h2>Mon stage</h2><p>Missions, outils et bilan.</p><code>$ cd stage/</code></div>
+    </a>
+  </nav>
+  <footer>Portfolio – épreuve orale du BTS SIO</footer>
+</main>
+
+<!-- ============ CV ============ -->
+<section class="page" id="cv">
+  <a class="back" href="#">$ cd ..</a>
+  <div class="term">
+    <div class="bar"><i></i><i></i><i></i><span>salim@sisr: ~/cv</span></div>
+    <div class="body">
+      <h1>Mon CV</h1>
+      <p class="lead">Mon parcours, mes compétences et mes expériences.</p>
+      <a class="btn" href="cv.pdf" download>Télécharger le CV</a>
+      <p><span class="todo">À faire : place ton fichier cv.pdf dans le même dossier que portfolio.html, il s'affichera ci-dessous.</span></p>
+      <iframe src="cv.pdf" title="Mon CV"></iframe>
+    </div>
+  </div>
+</section>
+
+<!-- ============ VEILLE ============ -->
+<section class="page" id="veille">
+  <a class="back" href="#">$ cd ..</a>
+  <div class="term">
+    <div class="bar"><i></i><i></i><i></i><span>salim@sisr: ~/veille/zero-trust</span></div>
+    <div class="body">
+      <h1>Veille : le Zero Trust</h1>
+      <p class="lead">Ne jamais faire confiance par défaut, toujours vérifier. Un modèle de sécurité né en 2010, devenu la base de la cybersécurité moderne.</p>
+
+      <h2>Ce que ça veut dire</h2>
+      <p>Le modèle classique protège un périmètre : un pare-feu à l'entrée, et tout ce qui est à l'intérieur est jugé fiable. Le Zero Trust supprime cette idée d'« intérieur de confiance ».</p>
+      <div class="diag">
+        <figure>
+          <svg viewBox="0 0 300 150" role="img" aria-label="Modèle périmètre : un pare-feu, puis un réseau interne où tout communique librement">
+            <text x="6" y="80">Internet</text>
+            <rect class="fw" x="62" y="30" width="8" height="90"/><text x="42" y="24">pare-feu</text>
+            <rect x="82" y="22" width="210" height="110" rx="6" fill="none" stroke="#1f3d5f" stroke-dasharray="5 4"/>
+            <text x="92" y="40">réseau « de confiance »</text>
+            <rect class="n" x="100" y="58" width="34" height="26"/><rect class="n" x="200" y="58" width="34" height="26"/>
+            <rect class="n" x="100" y="98" width="34" height="26"/><rect class="n" x="200" y="98" width="34" height="26"/>
+            <path class="bad" d="M134 71H200M117 84V98M217 84V98M134 111H200M134 84L200 98"/>
+          </svg>
+          <figcaption>Périmètre : une fois dedans, tout circule</figcaption>
+        </figure>
+        <figure>
+          <svg viewBox="0 0 300 150" role="img" aria-label="Zero Trust : chaque accès passe par un point de contrôle de la politique d'accès">
+            <rect class="n" x="118" y="12" width="64" height="26" rx="4" stroke="#3fd0ff"/><text x="126" y="29">politique</text>
+            <rect class="n" x="20" y="98" width="46" height="26"/><rect class="n" x="127" y="98" width="46" height="26"/><rect class="n" x="234" y="98" width="46" height="26"/>
+            <path class="ok" d="M150 38V70M43 70H257M43 70V98M150 70V98M257 70V98"/>
+            <circle cx="43" cy="84" r="5" fill="#3fd0ff"/><circle cx="150" cy="84" r="5" fill="#3fd0ff"/><circle cx="257" cy="84" r="5" fill="#3fd0ff"/>
+            <text x="20" y="142">chaque accès est vérifié</text>
+          </svg>
+          <figcaption>Zero Trust : chaque accès est contrôlé</figcaption>
+        </figure>
+      </div>
+      <div class="cols" style="margin-top:14px">
+        <div class="box"><h3>Toujours vérifier</h3><p>Identité de l'utilisateur, état du poste, contexte de la demande, à chaque accès.</p></div>
+        <div class="box"><h3>Moindre privilège</h3><p>On n'accorde que l'accès nécessaire, rien de plus.</p></div>
+        <div class="box"><h3>Supposer la compromission</h3><p>Segmentation et surveillance, comme si l'attaquant était déjà dedans.</p></div>
+      </div>
+
+      <h2>Frise chronologique</h2>
+      <ol class="log">
+        <li>
+          <time datetime="2010">2010</time>
+          <div><h3>Naissance du concept</h3><p>John Kindervag, analyste chez Forrester, formalise le modèle « Zero Trust » et remet en cause l'approche « forteresse + pare-feu ».</p></div>
+        </li>
+        <li class="key">
+          <time datetime="2020-08">Août 2020</time>
+          <div><h3>Le NIST publie la norme SP 800-207<span class="flag">moment clé</span></h3><p>L'architecture Zero Trust reçoit une définition officielle. Le concept sort du discours commercial et devient un cadre de référence pour les entreprises et les États.</p></div>
+        </li>
+        <li>
+          <time datetime="2026">2026</time>
+          <div><h3>82 % y croient, 17 % l'ont vraiment déployé</h3><p>Selon le rapport Ordr 2026, la grande majorité des organisations juge le Zero Trust essentiel, mais peu l'ont déployé entièrement. Freins principaux : la dispersion des outils (26 %) et les systèmes anciens (24 %).</p></div>
+        </li>
+        <li>
+          <time datetime="2026">2026</time>
+          <div><h3>Les vulnérabilités, premier point d'entrée des attaques</h3><p>Selon le Verizon DBIR 2026, l'exploitation de failles est la première porte d'entrée (31 %), devant les identifiants volés (13 %). D'où l'intérêt de limiter ce qu'un attaquant peut atteindre une fois entré.</p></div>
+        </li>
+        <li>
+          <time datetime="2026-08">Août 2026</time>
+          <div><h3>Le Zero Trust s'étend à l'IA</h3><p>Cloudflare lance une « Identity-Aware AI Gateway » : contrôle d'identité et politiques d'accès appliqués à l'usage de l'IA en entreprise.</p></div>
+        </li>
+      </ol>
+
+      <h2>Lien avec mes projets</h2>
+      <div class="box"><p>Le Zero Trust s'appuie sur des briques que j'ai déjà mises en pratique : filtrage strict par règles de pare-feu (projet DMZ du Louvre), durcissement d'un serveur avec UFW et Fail2ban (projet Odoo), segmentation du réseau.</p></div>
+
+      <h2>Sources et outil de veille</h2>
+      <div class="box">
+        <p><span class="tag">NIST</span><span class="tag">ANSSI / CERT-FR</span><span class="tag">Dark Reading</span><span class="tag">SecurityWeek</span><span class="tag">Verizon DBIR</span></p>
+        <p>Outil utilisé : <span class="todo">À compléter : Feedly, Inoreader, alertes Google… (ce que tu utilises vraiment)</span></p>
+        <p>Fréquence de consultation : <span class="todo">À compléter</span></p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ SISR ============ -->
+<section class="page" id="sisr">
+  <a class="back" href="#">$ cd ..</a>
+  <div class="term">
+    <div class="bar"><i></i><i></i><i></i><span>salim@sisr: ~/sisr</span></div>
+    <div class="body">
+      <h1>BTS SIO, option SISR</h1>
+      <p class="lead">Services Informatiques aux Organisations, option Solutions d'Infrastructure, Systèmes et Réseaux : la formation qui prépare à installer, sécuriser et administrer l'infrastructure informatique d'une entreprise.</p>
+
+      <h2>Ce que j'apprends</h2>
+      <div class="cols">
+        <div class="box"><h3>Réseaux</h3><p>Conception, adressage, configuration des équipements, VLAN.</p></div>
+        <div class="box"><h3>Systèmes</h3><p>Administration de serveurs, virtualisation, services réseau.</p></div>
+        <div class="box"><h3>Sécurité</h3><p>Pare-feu, durcissement des systèmes, gestion des accès.</p></div>
+      </div>
+
+      <h2>Mes réalisations</h2>
+      <div class="box">
+        <h3>DMZ et pare-feu pour un système de billetterie</h3>
+        <p>1re année. Simulation d'une DMZ pour la billetterie en ligne d'un musée fictif (le Louvre), avec un pare-feu Zyxel USG 100.</p>
+        <ul><li>Création d'objets d'adresses</li><li>Rédaction des règles de filtrage entre les zones</li><li>Compte rendu détaillé et préparation à l'oral</li></ul>
+      </div>
+      <div class="box">
+        <h3>Extension d'un réseau d'entreprise avec un serveur ERP Odoo</h3>
+        <p>2e année. Ajout d'un serveur Odoo sur une machine virtuelle Debian 13 dans le réseau d'une entreprise.</p>
+        <ul><li>Adresse IP statique</li><li>Sécurisation des utilisateurs et de l'accès SSH</li><li>Pare-feu UFW et protection Fail2ban</li><li>Document de recette complet</li></ul>
+      </div>
+      <p><span class="todo">À faire : ajoute ici tes autres projets (TP, mises en situation) si tu en as.</span></p>
+    </div>
+  </div>
+</section>
+
+<!-- ============ STAGE ============ -->
+<section class="page" id="stage">
+  <a class="back" href="#">$ cd ..</a>
+  <div class="term">
+    <div class="bar"><i></i><i></i><i></i><span>salim@sisr: ~/stage</span></div>
+    <div class="body">
+      <h1>Mon stage</h1>
+      <p class="lead"><span class="todo">À compléter : une phrase qui résume ton stage (où, quand, pour faire quoi).</span></p>
+      <h2>L'entreprise</h2>
+      <div class="box"><p><span class="todo">Nom, secteur d'activité, taille, service d'accueil, durée du stage.</span></p></div>
+      <h2>Mes missions</h2>
+      <div class="box"><ul>
+        <li><span class="todo">Mission 1 : ce que tu as fait, concrètement.</span></li>
+        <li><span class="todo">Mission 2</span></li>
+        <li><span class="todo">Mission 3</span></li>
+      </ul></div>
+      <h2>Outils et technologies</h2>
+      <div class="box"><p><span class="todo">Exemples : pare-feu, hyperviseur, OS serveur, outil de supervision…</span></p></div>
+      <h2>Bilan</h2>
+      <div class="box"><p><span class="todo">Ce que le stage t'a apporté, les difficultés rencontrées, le lien avec ta formation.</span></p></div>
+    </div>
+  </div>
+</section>
+
+</div>
+</body>
+</html>
